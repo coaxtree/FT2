@@ -1,0 +1,57 @@
+<header-app></header-app>
+<div class="container">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <h1>Live with your Family in One Home!</h1>
+    <img class='img-responsive' src="public/images/family-home1.jpg" alt='Home Family'>
+  </div>
+  <div class="col-md-4 col-sm-1"></div>
+  <div class="col-md-4 col-sm-8 col-xs-12 sigin">
+    <div class='row'>
+      <img class='img-circle logo' src="public/images/ft.jpg" alt='Tree Logo'>
+    </div>
+    <form novalidate #f="ngForm" (ngSubmit)="loadAllUsers()">
+      <div class="row">
+        <div class="form-group" style="padding-top: 20px">
+          <label for="">Family Name</label>
+          <input type="text" class="form-control" name="familyName" [ngModel]="login.familyName" required #familyName="ngModel">
+          <small *ngIf="familyName.errors?.required && familyName.touched" class="text-danger">
+        Your Family Name is required
+       </small>
+          <!--<pre *ngIf="familyName.errors" class="margin-20">{{ familyName.errors | json }}</pre>-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label for="">Email id / Mobile Number</label>
+          <input type="text" class="form-control" name="email" [ngModel]="login.email" required #email="ngModel" pattern="[0-9]{10}|[^@]+@[^@]+\.[a-zA-Z]{2,}">
+          <small *ngIf="email.errors?.required && email.touched" class="text-danger">
+        Email id / Mobile Number is required
+       </small>
+          <!--<pre *ngIf="email.errors" class="margin-20">{{ email.errors | json }}</pre>-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label for="">Password</label>
+          <input type="password" class="form-control" name="password" [ngModel]="login.password" required validateEqual="confirmPassword"
+            reverse="true" #password="ngModel">
+            <small *ngIf="password.errors?.required && password.touched" class="text-danger">
+        Password is required
+       </small>
+            <!--<pre *ngIf="password.errors" class="margin-20">{{ password.errors | json }}</pre>-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="wrapper-signin">
+          <button type="submit" [disabled]="f.invalid" class="btn btn-raised btn-lg btn-block btn-primary">LOGIN</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="create-acct">
+          <a [routerLink]="['/signup']">Create an account</a>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.firststyle{
+    color: white;
+    text-align: center !important;
+    
+}
+
+span{
+     font-size: 1.7em;
+     font-weight: bold;
+}
+.container-fluid{
+    background-color: #009688 !important;
+}

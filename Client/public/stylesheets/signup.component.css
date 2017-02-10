@@ -1,0 +1,48 @@
+
+
+.logo{
+    height: 100px !important;
+    display: block;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.sigin{
+    background: rgba(182, 230, 207, .3);
+}
+
+.wrapper-signin,h1 {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
+
+.btn-primary{
+ background-color: #009688 !important;
+}
+
+.row{
+    padding: 3px 50px;
+}
+
+input, label, p, a{
+    color: black !important;
+}
+
+div.create-acct{
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+.error {
+  font-size: 1em;
+  color: #c7254e;
+  border-radius: 3px;
+}
+
+
+
