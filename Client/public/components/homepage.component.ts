@@ -9,20 +9,15 @@ import { SignupService } from '../helper/services/signup.service';
   styleUrls: ['../../stylesheets/signup.component.css']
 })
 
-export class HomePageComponent{
- currentUser: Signup;
+export class HomePageComponent {
+  currentUser: Signup;
 
-    users: Signup[] = [];
+  users: Signup[] = [];
 
-    constructor(private signupService: SignupService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(this.currentUser);
-    }
+  constructor(private signupService: SignupService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.currentUser);
+  }
 
-  /*ngOnInit() {
-        this.loadAllUsers();
-    }
-      private loadAllUsers() {
-        this.signupService.getAll().subscribe(users => { this.users = users; });
-    }*/
+
 }

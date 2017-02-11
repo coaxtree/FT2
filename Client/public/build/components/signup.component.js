@@ -31,7 +31,7 @@ var SignupComponent = (function () {
     SignupComponent.prototype.submitUser = function () {
         var _this = this;
         // Variable to hold a reference of addUser
-        console.log("first");
+        console.log("first1");
         var signupOperation;
         console.log("entered");
         signupOperation = this.signupService.addUser(this.signup);

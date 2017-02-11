@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { routing } from './helper/routing/app.routing';
 import { AuthGuard } from './helper/guards/auth.guard';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { LoginComponent } from './components/login.component';
 import { SignupComponent } from './components/signup.component';
@@ -15,11 +16,13 @@ import { EqualValidator } from './helper/directives/equal-validator.directive';
 import { SignupService } from './helper/services/signup.service';
 
 
+
 @NgModule({
-  imports: [BrowserModule, FormsModule, routing, HttpModule, JsonpModule,],
+  imports: [BrowserModule, FormsModule, routing, HttpModule, JsonpModule ],
   declarations: [AppComponent, EqualValidator, LoginComponent, HeaderComponent, SignupComponent,HomePageComponent],
   providers: [AuthGuard, SignupService],
   bootstrap: [AppComponent]
 })
 
 export class AppModule { }
+

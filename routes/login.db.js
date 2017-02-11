@@ -26,13 +26,13 @@ router.post('/team/RESTAPI/signup', function (req, res, next) {
 				return next(err);
 			}
 			else {
-				var insertSql = "INSERT INTO User_Create_Account SET ?";
+				var insertSql = "INSERT INTO tree_signup SET ?";
 				var insertValues = {
-					"Your_Name": reqObj.yourName,
+					"Node_Name": reqObj.yourName,
 					"Family_Name": reqObj.familyName,
-					"Email_ID": reqObj.email,
-					"Password": reqObj.password,
-					"Confirm_Password": reqObj.confirmPassword
+					"Node_MailId": reqObj.email,
+					"Node_Password": reqObj.password,
+					"Node_ConfirmPassword": reqObj.confirmPassword
 				};
 				var query = conn.query(insertSql, insertValues, function (err, result) {
 					if (err) {
@@ -41,7 +41,7 @@ router.post('/team/RESTAPI/signup', function (req, res, next) {
 					}
 					console.log(result);
 					var User_Id = result.insertId;
-					res.json({ "UserID": User_Id });
+					res.json({ "yourName": reqObj.yourName });
 				});
 			}
 		});
@@ -55,17 +55,20 @@ router.post('/team/RESTAPI/signup', function (req, res, next) {
 //Get Account details
 router.get('/team/RESTAPI/login', function (req, res, next) {
 	try {
-    	/*var family = req.param('family');
-  		var passwrd = req.param('passwrd');*/
-		var query = url.parse(req.url, true).query;
-		console.log(query);
-		//var yourName = query.yourName
-		var familyName = query.familyName;
-		var email = query.email;
-		var password = query.password;
+    	var familyName = req.param('familyName');
+		var email = req.param('email');
+  		var password = req.param('password');
+		var reqObj = req.body;
+		console.log(reqObj);
+		//var query = url.parse(req.url, true).query;
+		//console.log(query);
+	/*	//var yourName = query.yourName
+		var familyName = reqObj.familyName;
+		var email = reqObj.email;
+		var password = reqObj.password;
 		console.log(familyName);
 		console.log(email);
-		console.log(password);
+		console.log(password);*/
 		req.getConnection(function (err, conn) {
 			if (err) {
 				console.error('SQL Connection error: ', err);
@@ -91,5 +94,7 @@ router.get('/team/RESTAPI/login', function (req, res, next) {
 		return next(ex);
 	}
 });
+
+
 
 module.exports = router;

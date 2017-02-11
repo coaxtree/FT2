@@ -15,10 +15,11 @@ require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var signup_service_1 = require("../helper/services/signup.service");
 var LoginComponent = (function () {
-    function LoginComponent(signupService, router) {
+    // users: Login[] = [];
+    function LoginComponent(route, signupService, router) {
+        this.route = route;
         this.signupService = signupService;
         this.router = router;
-        this.users = [];
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.login = {
@@ -27,11 +28,26 @@ var LoginComponent = (function () {
             password: '',
         };
     };
+    LoginComponent.prototype.submitUser = function () {
+        var _this = this;
+        // Variable to hold a reference of addUser
+        console.log("first1");
+        var signupOperation;
+        console.log("entered");
+        signupOperation = this.signupService.getLogin(this.login);
+        signupOperation.subscribe(function (signup) {
+            console.log("hello");
+            _this.router.navigate(['/homepage']);
+        }, function (err) {
+            // Log errors if any
+            console.log(err);
+        });
+    };
     LoginComponent.prototype.loadAllUsers = function () {
         var _this = this;
         console.log("first");
-        this.signupService.getAll(this.login.familyName, this.login.email, this.login.password).subscribe(function (users) {
-            //  this.users=users;
+        this.signupService.getUser().subscribe(function (login) {
+            //this.login=login;
             _this.router.navigate(['/homepage']);
         });
     };
@@ -43,7 +59,8 @@ LoginComponent = __decorate([
         templateUrl: '../../html/login.component.html',
         styleUrls: ['../../stylesheets/login.component.css']
     }),
-    __metadata("design:paramtypes", [signup_service_1.SignupService,
+    __metadata("design:paramtypes", [router_1.ActivatedRoute,
+        signup_service_1.SignupService,
         router_1.Router])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;

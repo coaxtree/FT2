@@ -25,7 +25,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_1.routing, http_1.HttpModule, http_1.JsonpModule,],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_1.routing, http_1.HttpModule, http_1.JsonpModule],
         declarations: [app_component_1.AppComponent, equal_validator_directive_1.EqualValidator, login_component_1.LoginComponent, header_component_1.HeaderComponent, signup_component_1.SignupComponent, homepage_component_1.HomePageComponent],
         providers: [auth_guard_1.AuthGuard, signup_service_1.SignupService],
         bootstrap: [app_component_1.AppComponent]

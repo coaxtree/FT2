@@ -33,7 +33,22 @@ var SignupService = (function () {
             localStorage.setItem('currentUser', JSON.stringify(user));
         }).catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
     };
-    SignupService.prototype.getAll = function (familyName, email, password) {
+    SignupService.prototype.getLogin = function (body) {
+        console.log("second");
+        var bodyString = JSON.stringify(body); // Stringify payload
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
+        return this.http.post(this.loginURL, body, options) // ...using post request
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
+    };
+    SignupService.prototype.login1 = function (familyName, email, password) {
+        console.log("second");
+        return this.http.post(this.loginURL, JSON.stringify({ familyName: familyName, email: email, password: password }))
+            .map(function (response) { return response.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+    };
+    SignupService.prototype.getUser = function () {
         console.log("second");
         // ...using get request
         return this.http.get(this.loginURL)

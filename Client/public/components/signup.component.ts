@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit{
 
     submitUser() {
         // Variable to hold a reference of addUser
-        console.log("first")
+        console.log("first1")
         let signupOperation: Observable<Signup[]>;
             console.log("entered")
             signupOperation = this.signupService.addUser(this.signup)

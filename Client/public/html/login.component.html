@@ -11,9 +11,9 @@
     </div>
     <form novalidate #f="ngForm" (ngSubmit)="loadAllUsers()">
       <div class="row">
-        <div class="form-group" style="padding-top: 20px">
+        <div class="form-group" style="padding-top: 15px">
           <label for="">Family Name</label>
-          <input type="text" class="form-control" name="familyName" [ngModel]="login.familyName" required #familyName="ngModel">
+          <input type="text" class="form-control" name="familyName" [(ngModel)]="login.familyName" required #familyName="ngModel">
           <small *ngIf="familyName.errors?.required && familyName.touched" class="text-danger">
         Your Family Name is required
        </small>
@@ -48,10 +48,18 @@
       </div>
       <div class="row">
         <div class="create-acct">
-          <a [routerLink]="['/signup']">Create an account</a>
+          <a class="btn btn-link" [routerLink]="['/signup']" role="button">Create an account</a>
           <router-outlet></router-outlet>
         </div>
+           <div class="create-acct">
+         <span>Forgot your
+            <a class="btn btn-link" [routerLink]="['/forgotfamilyname']" role="button">family name</a>
+            or
+            <a class="btn btn-link" [routerLink]="['/forgotpassword']" role="button">password</a>
+            ?
+          </span></div>
       </div>
-    </form>
-  </div>
+       <div class="row"></div>
+  </form>
+</div>
 </div>

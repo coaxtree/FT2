@@ -15,7 +15,7 @@ var app = express();
 app.use(connection(mysql, {
 host: "localhost",
 user: "root",
-password: "root",
+password: "coax",
 database: "joinfamily"
 },'request'));
 

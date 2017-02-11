@@ -36,9 +36,10 @@ input, label, p, a{
 }
 
 div.create-acct{
-  font-size: 1.2em;
   font-weight: bold;
   text-align: center !important;
+  padding-top: 10px;
+  padding-top: 10px;
 }
 
 .error {
@@ -47,4 +48,11 @@ div.create-acct{
   border-radius: 3px;
 }
 
+.btn-link{
+    padding: 0px;
+}
+
+.span{
+    text-align: center !important;
+}
 

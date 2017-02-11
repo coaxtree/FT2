@@ -11,3 +11,12 @@ span{
 .container-fluid{
     background-color: #009688 !important;
 }
+
+.btn-success{
+ background-color: #009688 !important;
+}
+
+.logout{
+    padding-top: 7px;
+    float: right;
+}

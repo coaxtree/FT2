@@ -11,9 +11,8 @@ const appRoutes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'homepage', component: HomePageComponent },
 
-
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, { useHash: true });
