@@ -1,100 +1,83 @@
-var express = require('express');
-var router = express.Router();
+var mysql   = require("mysql");
 var url = require('url');
-/* GET home page. */
-router.get('/', function (req, res, next) {
-	res.render('index');
-});
 
-/*router.get('/login.db', function(req, res, next){
-    db.tasks.find(function(err, tasks){
-        if(err){
-            res.send(err);
-        }
-        res.json(tasks);
-    });
-});*/
+function REST_ROUTER(router,connection,md5) {
+    var self = this;
+    self.handleRoutes(router,connection,md5);
+}
 
-// Create Account
-router.post('/team/RESTAPI/signup', function (req, res, next) {
+    REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
+    var self = this;
+
+    // Create Account
+router.post('/signup', function (req, res, next) {
 	try {
-		var reqObj = req.body;
-		console.log(reqObj);
-		req.getConnection(function (err, conn) {
-			if (err) {
-				console.error('SQL Connection error: ', err);
-				return next(err);
-			}
-			else {
-				var insertSql = "INSERT INTO tree_signup SET ?";
-				var insertValues = {
-					"Node_Name": reqObj.yourName,
+        var reqObj = req.body;
+        console.log(reqObj);
+		var query = "INSERT INTO joinfamily.user_account SET ?";
+            var insertValues = {
 					"Family_Name": reqObj.familyName,
-					"Node_MailId": reqObj.email,
-					"Node_Password": reqObj.password,
-					"Node_ConfirmPassword": reqObj.confirmPassword
+					"Name": reqObj.yourName,
+					"Email_Id": reqObj.email,
+				//	"Mobile_No": reqObj.mobNo,
+					"Password": reqObj.password,
+					"Confirm_Password": reqObj.confirmPassword
 				};
-				var query = conn.query(insertSql, insertValues, function (err, result) {
+       //var table = ["joinfamily.user_test","Name","Family_Name",req.body.yourName,req.body.familyName];
+        query = mysql.format(query,insertValues);
+        connection.query(query, function (err, rows) {
 					if (err) {
 						console.error('SQL error: ', err);
 						return next(err);
-					}
-					console.log(result);
-					var User_Id = result.insertId;
-					res.json({ "yourName": reqObj.yourName });
+                        res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+					} else {
+				    	console.log(rows);
+				    	var User_Id = rows.insertId;
+				    	res.json({ "Name": reqObj.yourName });
+                        //res.json({ "User_Id": reqObj.User_Id });
+                       // res.json({"Error" : false, "Message" : "User Added !"});
+                    }
 				});
-			}
-		});
-	}
-	catch (ex) {
+    
+       } catch (ex) {
 		console.error("Internal error:" + ex);
 		return next(ex);
 	}
-});
+    });
 
-//Get Account details
-router.get('/team/RESTAPI/login', function (req, res, next) {
+//get account details
+    router.get('/login', function (req, res, next) {
 	try {
-    	var familyName = req.param('familyName');
-		var email = req.param('email');
-  		var password = req.param('password');
-		var reqObj = req.body;
-		console.log(reqObj);
-		//var query = url.parse(req.url, true).query;
-		//console.log(query);
-	/*	//var yourName = query.yourName
-		var familyName = reqObj.familyName;
-		var email = reqObj.email;
-		var password = reqObj.password;
-		console.log(familyName);
-		console.log(email);
-		console.log(password);*/
-		req.getConnection(function (err, conn) {
-			if (err) {
-				console.error('SQL Connection error: ', err);
-				return next(err);
-			} else {
-				conn.query('SELECT Family_Name, Email_ID, Password FROM joinfamily.user_setting where Family_Name = ? and Email_ID = ? and Password = ?',
-					[familyName, email, password], function (err, rows, fields) {
-						if (err) {
-							console.error('SQL error: ', err);
-							return next(err);
-						}
-						var resFam = [];
-						for (var famIndex in rows) {
+    	/*var family = req.param('family');
+  		var passwrd = req.param('passwrd');*/
+		/*var query = url.parse(req.url, true).query;
+		console.log(query);*/
+		//var yourName = query.yourName
+        var query = "SELECT * FROM ?? where ?? = ? and ?? =? and ?? = ?";
+        var table = ["joinfamily.user_setting","Family_Name",req.params.family,"Email_ID",req.params.email, "Password",req.params.passwrd];
+        query = mysql.format(query,table);		
+       // var rows = [];       
+        connection.query(query,function(err,row){          
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+              // res.json({"Error" : false, "Message" : "Success", "Users" : rows});
+              var resFam = [];
+						for (var famIndex in row) {
 							var famObj = rows[famIndex];
 							resFam.push(famObj);
 						}
-						res.json(resFam);
-					});
-			}
-		});
-	} catch (ex) {
+						res.json({"Error" : false, "Message" : "Success", "Users" : resFam});
+                        console.log(resFam)
+           }
+        });
+    
+       } catch (ex) {
 		console.error("Internal error:" + ex);
 		return next(ex);
 	}
-});
+    });
+ 
+}
 
-
-
-module.exports = router;
+module.exports = REST_ROUTER;

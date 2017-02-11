@@ -19,8 +19,8 @@ var SignupService = (function () {
     function SignupService(http) {
         this.http = http;
         // private instance variable to hold base url
-        this.signupURL = 'http://localhost:3000/team/RESTAPI/signup';
-        this.loginURL = 'http://localhost:3000/team/RESTAPI/login';
+        this.signupURL = 'http://localhost:3000/api/signup';
+        this.loginURL = 'http://localhost:3000/api/login';
     }
     SignupService.prototype.addUser = function (body) {
         var bodyString = JSON.stringify(body); // Stringify payload
