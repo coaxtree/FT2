@@ -3,5 +3,4 @@ export interface Signup {
   familyName: string;
   email: string;
   password: string;
-  confirmPassword:string;
 }

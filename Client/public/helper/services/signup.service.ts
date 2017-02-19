@@ -13,8 +13,8 @@ export class SignupService {
     // Resolve HTTP using the constructor
     constructor(private http: Http) { }
     // private instance variable to hold base url
-    private signupURL = 'http://localhost:3000/api/signup';
-    private loginURL = 'http://localhost:3000/api/login';
+    private signupURL = 'http://localhost:3000/auth/signup';
+    private loginURL = 'http://localhost:3000/auth/login';
 
     addUser(body: Object): Observable<Signup[]> {
         let bodyString = JSON.stringify(body); // Stringify payload

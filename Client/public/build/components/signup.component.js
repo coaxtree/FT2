@@ -24,8 +24,7 @@ var SignupComponent = (function () {
             yourName: '',
             familyName: '',
             email: '',
-            password: '',
-            confirmPassword: ''
+            password: ''
         };
     };
     SignupComponent.prototype.submitUser = function () {

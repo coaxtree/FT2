@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "MD5": "^1.3.0",
+    "bcryptjs": "^2.4.3",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "latest",
     "connect-flash": "^0.1.1",
     "cookie-parser": "latest",
@@ -19,9 +21,11 @@
     "fs": "0.0.1-security",
     "morgan": "^1.8.0",
     "mysql": "^2.13.0",
+    "mysql-model": "0.0.2",
     "node-mysql": "^0.4.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "passport-strategy": "^1.0.0",
     "serve-favicon": "^2.3.2"
   },
   "devDependencies": {
