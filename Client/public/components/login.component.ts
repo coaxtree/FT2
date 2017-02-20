@@ -16,7 +16,6 @@ import { SignupService } from '../helper/services/signup.service';
 })
 export class LoginComponent {
 
-  returnUrl: string;
   // users: Login[] = [];
   constructor(
     private route: ActivatedRoute,
@@ -26,14 +25,20 @@ export class LoginComponent {
   ) { }
 
   public login: Login;
+  public registerMsg:any;
 
+  regMsg='Congrats! Registration Successful';
+  
   ngOnInit() {
   this.login = {
-      familyName: '',
       email: '',
       password: '',
     }
+
+  this.registerMsg=localStorage.getItem('registerMsg');
+
   }
+ 
 
   submitUser() {
     // Variable to hold a reference of addUser
@@ -42,9 +47,10 @@ export class LoginComponent {
     console.log("entered")
     signupOperation = this.signupService.getLogin(this.login)
     signupOperation.subscribe(
-      signup => {
+      login => {
         console.log("hello")
         this.router.navigate(['/homepage']);
+        localStorage.removeItem('registerMsg');
       },
       err => {
         // Log errors if any
@@ -52,15 +58,6 @@ export class LoginComponent {
       });
 
   }
-   private loadAllUsers() {
-     console.log("first")
- 
-     this.signupService.getUser().subscribe(
-       login => {
-         //this.login=login;
-         this.router.navigate(['/homepage']);
-       });
-   }
  
  /*  onSubmit({ value, valid }: { value: Login, valid: boolean }) {
      console.log(value, valid);

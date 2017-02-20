@@ -22,15 +22,16 @@ var SignupService = (function () {
         this.signupURL = 'http://localhost:3000/auth/signup';
         this.loginURL = 'http://localhost:3000/auth/login';
     }
-    SignupService.prototype.addUser = function (body) {
-        var bodyString = JSON.stringify(body); // Stringify payload
+    SignupService.prototype.addUser = function (user) {
+        var bodyString = JSON.stringify(user); // Stringify payload
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
-        return this.http.post(this.signupURL, body, options) // ...using post request
+        return this.http.post(this.signupURL, user, options) // ...using post request
             .map(function (res) {
             var user = res.json();
             // store user details 
             localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('registerMsg', "Congrats! Registration Successful");
         }).catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
     };
     SignupService.prototype.getLogin = function (body) {
@@ -39,21 +40,12 @@ var SignupService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
         return this.http.post(this.loginURL, body, options) // ...using post request
-            .map(function (res) { return res.json(); })
+            .map(function (res) {
+            var user = res.json();
+            // store user details 
+            localStorage.setItem('currentUser', JSON.stringify(user));
+        })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
-    };
-    SignupService.prototype.login1 = function (familyName, email, password) {
-        console.log("second");
-        return this.http.post(this.loginURL, JSON.stringify({ familyName: familyName, email: email, password: password }))
-            .map(function (response) { return response.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
-    };
-    SignupService.prototype.getUser = function () {
-        console.log("second");
-        // ...using get request
-        return this.http.get(this.loginURL)
-            .map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     return SignupService;
 }());

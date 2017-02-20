@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Signup } from '../helper/interface/signup.interface';
 import { SignupService } from '../helper/services/signup.service';
 
 @Component({
@@ -10,14 +9,11 @@ import { SignupService } from '../helper/services/signup.service';
 })
 
 export class HomePageComponent {
-  currentUser: Signup;
 
-  users: Signup[] = [];
+  currentUser: String;
 
   constructor(private signupService: SignupService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser);
   }
-
 
 }

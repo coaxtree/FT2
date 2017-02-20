@@ -20,13 +20,14 @@ var LoginComponent = (function () {
         this.route = route;
         this.signupService = signupService;
         this.router = router;
+        this.regMsg = 'Congrats! Registration Successful';
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.login = {
-            familyName: '',
             email: '',
             password: '',
         };
+        this.registerMsg = localStorage.getItem('registerMsg');
     };
     LoginComponent.prototype.submitUser = function () {
         var _this = this;
@@ -35,20 +36,13 @@ var LoginComponent = (function () {
         var signupOperation;
         console.log("entered");
         signupOperation = this.signupService.getLogin(this.login);
-        signupOperation.subscribe(function (signup) {
+        signupOperation.subscribe(function (login) {
             console.log("hello");
             _this.router.navigate(['/homepage']);
+            localStorage.removeItem('registerMsg');
         }, function (err) {
             // Log errors if any
             console.log(err);
-        });
-    };
-    LoginComponent.prototype.loadAllUsers = function () {
-        var _this = this;
-        console.log("first");
-        this.signupService.getUser().subscribe(function (login) {
-            //this.login=login;
-            _this.router.navigate(['/homepage']);
         });
     };
     return LoginComponent;

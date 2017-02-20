@@ -6,18 +6,44 @@
 
 
 span{
-     font-size: 1.7em;
+     font-size: 1.3em;
      font-weight: bold;
 }
-.container-fluid{
+.container-fluid, .navbar-brand,.navbar-header{
     background-color: #009688 !important;
+    height: 30px;
 }
+.navbar-brand{
+    padding: 5px 15px;
+}
+
 
 .btn-success{
  background-color: #009688 !important;
 }
 
-.logout{
-    padding-top: 7px;
-    float: right;
+
+.navbar-nav>li>a {
+    padding-top: 3px;
+    padding-bottom: 2px;
+    color: white;
+    background-color: #009688 !important;
+    margin-top: -27px;
+    margin-right: 50px;
+}
+
+.navbar-nav>li>a:hover {
+    background-color: #009688 !important;
+    cursor: pointer;   
+}
+
+.dropdown:hover .dropdown-menu {
+
+    /** Show dropdown menu */
+    display: block;
+}
+
+.treeview{
+    max-width: 15% !important;
+        cursor: pointer;
 }

@@ -13,9 +13,7 @@ var signup_service_1 = require("../helper/services/signup.service");
 var HomePageComponent = (function () {
     function HomePageComponent(signupService) {
         this.signupService = signupService;
-        this.users = [];
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(this.currentUser);
     }
     return HomePageComponent;
 }());

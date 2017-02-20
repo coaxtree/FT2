@@ -15,7 +15,7 @@ import { SignupService } from '../helper/services/signup.service';
     templateUrl: '../../html/signup.component.html',
     styleUrls: ['../../stylesheets/signup.component.css']
 })
-export class SignupComponent implements OnInit{
+export class SignupComponent implements OnInit {
 
     public signup: Signup;
 
@@ -24,30 +24,27 @@ export class SignupComponent implements OnInit{
             yourName: '',
             familyName: '',
             email: '',
-            password: ''
+            password: '',
         }
     }
 
-        constructor(
+    constructor(
         private signupService: SignupService,
         private router: Router
     ) { }
 
     submitUser() {
         // Variable to hold a reference of addUser
-        console.log("first1")
         let signupOperation: Observable<Signup[]>;
-            console.log("entered")
-            signupOperation = this.signupService.addUser(this.signup)
-            signupOperation.subscribe(
-                signup => {
-                    console.log("hello")
-                  this.router.navigate(['/homepage']);
-                },
-                err => {
-                    // Log errors if any
-                    console.log(err);
-                });
-        } 
+        signupOperation = this.signupService.addUser(this.signup)
+        signupOperation.subscribe(
+            signup => {
+                this.router.navigate(['/login']);
+            },
+            err => {
+                // Log errors if any
+                console.log(err);
+            });
+    }
 
 }

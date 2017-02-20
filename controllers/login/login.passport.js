@@ -47,7 +47,7 @@ module.exports = function(passport) {
         function(req, email, password, done) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            connection.query("SELECT * FROM tester WHERE email_id = ?",[email], function(err, rows) {
+            connection.query("SELECT * FROM LoginDetails WHERE email_id = ?",[email], function(err, rows) {
                 if (err)
                     return done(err);
                 if (rows.length) {
@@ -64,7 +64,7 @@ module.exports = function(passport) {
 
                    // var insertQuery = "INSERT INTO mysqltest ( username, password ) values (?,?)";
 
-                    connection.query('INSERT INTO tester SET ?', user ,function(err, rows) {
+                    connection.query('INSERT INTO LoginDetails SET ?', user ,function(err, rows) {
                         user.id = rows.insertId;
 
                         return done(null, user);
@@ -89,7 +89,7 @@ module.exports = function(passport) {
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, email, password, done) { // callback with email and password from our form
-            connection.query("SELECT * FROM tester WHERE email_id = ?",[email], function(err, rows){
+            connection.query("SELECT * FROM LoginDetails WHERE email_id = ?",[email], function(err, rows){
 				if(err) throw err;
                 if(rows.length > 0){
 

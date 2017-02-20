@@ -7,24 +7,13 @@
   <div class="col-md-4 col-sm-1"></div>
   <div class="col-md-4 col-sm-8 col-xs-12 sigin">
     <div class='row'>
-      <img class='img-circle logo' src="public
-      /images/ft.jpg" alt='Tree Logo'>
+      <img class='img-circle logo' src="public/images/ft.jpg" alt='Tree Logo'>
     </div>
-    <form novalidate #f="ngForm" (ngSubmit)="loadAllUsers()">
+    <form novalidate #f="ngForm" (ngSubmit)="submitUser()">
       <div class="row">
         <div class="form-group" style="padding-top: 15px">
-          <label for="">Family Name</label>
-          <input type="text" class="form-control" name="familyName" [(ngModel)]="login.familyName" required #familyName="ngModel">
-          <small *ngIf="familyName.errors?.required && familyName.touched" class="text-danger">
-        Your Family Name is required
-       </small>
-          <!--<pre *ngIf="familyName.errors" class="margin-20">{{ familyName.errors | json }}</pre>-->
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group">
           <label for="">Email id / Mobile Number</label>
-          <input type="text" class="form-control" name="email" [ngModel]="login.email" required #email="ngModel" pattern="[0-9]{10}|[^@]+@[^@]+\.[a-zA-Z]{2,}">
+          <input type="text" class="form-control" name="email" [(ngModel)]="login.email" required #email="ngModel" pattern="[0-9]{10}|[^@]+@[^@]+\.[a-zA-Z]{2,}">
           <small *ngIf="email.errors?.required && email.touched" class="text-danger">
         Email id / Mobile Number is required
        </small>
@@ -34,12 +23,11 @@
       <div class="row">
         <div class="form-group">
           <label for="">Password</label>
-          <input type="password" class="form-control" name="password" [ngModel]="login.password" required validateEqual="confirmPassword"
-            reverse="true" #password="ngModel">
-            <small *ngIf="password.errors?.required && password.touched" class="text-danger">
+          <input type="password" class="form-control" name="password" [(ngModel)]="login.password" required #password="ngModel">
+          <small *ngIf="password.errors?.required && password.touched" class="text-danger">
         Password is required
        </small>
-            <!--<pre *ngIf="password.errors" class="margin-20">{{ password.errors | json }}</pre>-->
+          <!--<pre *ngIf="password.errors" class="margin-20">{{ password.errors | json }}</pre>-->
         </div>
       </div>
       <div class="row">
@@ -52,15 +40,15 @@
           <a class="btn btn-link" [routerLink]="['/signup']" role="button">Create an account</a>
           <router-outlet></router-outlet>
         </div>
-           <div class="create-acct">
-         <span>Forgot your
-            <a class="btn btn-link" [routerLink]="['/forgotfamilyname']" role="button">family name</a>
-            or
+        <div class="create-acct">
+          <span>Forgot your
             <a class="btn btn-link" [routerLink]="['/forgotpassword']" role="button">password</a>
             ?
           </span></div>
       </div>
-       <div class="row"></div>
-  </form>
+    </form>
+  </div>
 </div>
-</div>
+  <div class="row" id="display-success" *ngIf="registerMsg===regMsg">
+    {{registerMsg}}
+  </div>

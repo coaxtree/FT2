@@ -3,6 +3,6 @@ module.exports = {
         'host': 'localhost',
         'user': 'root',
         'password': 'coax',
-        'database': 'sampletest'
+        'database': 'joinfamily'
     }
 };

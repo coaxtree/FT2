@@ -53,8 +53,8 @@
         </div>
         <div class="form-group">
           <label for="">Retype password</label>
-          <input type="password" class="form-control" name="confirmPassword" ngModel required validateEqual="password"
-            reverse="false" #confirmPassword="ngModel">
+          <input type="password" class="form-control" name="confirmPassword" ngModel required validateEqual="password" reverse="false"
+            #confirmPassword="ngModel">
             <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)" class="text-danger">
         Password mismatch
       </small>

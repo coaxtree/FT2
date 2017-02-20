@@ -16,16 +16,17 @@ export class SignupService {
     private signupURL = 'http://localhost:3000/auth/signup';
     private loginURL = 'http://localhost:3000/auth/login';
 
-    addUser(body: Object): Observable<Signup[]> {
-        let bodyString = JSON.stringify(body); // Stringify payload
+    addUser(user: Object): Observable<Signup[]> {
+        let bodyString = JSON.stringify(user); // Stringify payload
         let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
-        return this.http.post(this.signupURL, body, options) // ...using post request
+        return this.http.post(this.signupURL, user, options) // ...using post request
             .map((res: Response) => {
                 let user = res.json();
                 // store user details 
                 localStorage.setItem('currentUser', JSON.stringify(user));
+                localStorage.setItem('registerMsg', "Congrats! Registration Successful");
 
             }).catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
     }
@@ -39,30 +40,14 @@ export class SignupService {
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
         return this.http.post(this.loginURL, body, options) // ...using post request
-            .map((res: Response) =>res.json())
+            .map((res: Response) =>{
+                let user = res.json();
+                // store user details 
+                localStorage.setItem('currentUser', JSON.stringify(user));
+            })
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
 
     }
-
-    login1(familyName: string, email: string, password: string) {
-           console.log("second")
-        return this.http.post(this.loginURL, JSON.stringify({ familyName: familyName, email: email, password: password }))
-            .map((response: Response) => response.json())
-                  .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-    }
-
-     getUser() : Observable<Login[]> {
-              console.log("second");
-
-         // ...using get request
-         return this.http.get(this.loginURL)
-                        // ...and calling .json() on the response to return data
-                         .map((res:Response) => res.json())
-                         //...errors if any
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-
-     }
-
  
 
 

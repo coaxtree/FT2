@@ -24,19 +24,16 @@ var SignupComponent = (function () {
             yourName: '',
             familyName: '',
             email: '',
-            password: ''
+            password: '',
         };
     };
     SignupComponent.prototype.submitUser = function () {
         var _this = this;
         // Variable to hold a reference of addUser
-        console.log("first1");
         var signupOperation;
-        console.log("entered");
         signupOperation = this.signupService.addUser(this.signup);
         signupOperation.subscribe(function (signup) {
-            console.log("hello");
-            _this.router.navigate(['/homepage']);
+            _this.router.navigate(['/login']);
         }, function (err) {
             // Log errors if any
             console.log(err);
