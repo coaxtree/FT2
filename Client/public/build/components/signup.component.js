@@ -18,6 +18,7 @@ var SignupComponent = (function () {
     function SignupComponent(signupService, router) {
         this.signupService = signupService;
         this.router = router;
+        this.errMsg = 'Email id is already registered..!';
     }
     SignupComponent.prototype.ngOnInit = function () {
         this.signup = {
@@ -27,7 +28,7 @@ var SignupComponent = (function () {
             password: '',
         };
     };
-    SignupComponent.prototype.submitUser = function () {
+    SignupComponent.prototype.registerUser = function () {
         var _this = this;
         // Variable to hold a reference of addUser
         var signupOperation;
@@ -36,6 +37,7 @@ var SignupComponent = (function () {
             _this.router.navigate(['/login']);
         }, function (err) {
             // Log errors if any
+            _this.errorMsg = err;
             console.log(err);
         });
     };

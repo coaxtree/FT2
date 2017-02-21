@@ -32,7 +32,7 @@ var SignupService = (function () {
             // store user details 
             localStorage.setItem('currentUser', JSON.stringify(user));
             localStorage.setItem('registerMsg', "Congrats! Registration Successful");
-        }).catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
+        }).catch(function (error) { return Rx_1.Observable.throw('Email id is already registered..!'); }); //...errors if any
     };
     SignupService.prototype.getLogin = function (body) {
         console.log("second");
@@ -45,7 +45,7 @@ var SignupService = (function () {
             // store user details 
             localStorage.setItem('currentUser', JSON.stringify(user));
         })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
+            .catch(function (error) { return Rx_1.Observable.throw('Invalid user name or password'); }); //...errors if any
     };
     return SignupService;
 }());

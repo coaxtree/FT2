@@ -18,7 +18,9 @@ import { SignupService } from '../helper/services/signup.service';
 export class SignupComponent implements OnInit {
 
     public signup: Signup;
-
+    errMsg='Email id is already registered..!';
+    public errorMsg:string;
+    
     ngOnInit() {
         this.signup = {
             yourName: '',
@@ -33,7 +35,7 @@ export class SignupComponent implements OnInit {
         private router: Router
     ) { }
 
-    submitUser() {
+    registerUser() {
         // Variable to hold a reference of addUser
         let signupOperation: Observable<Signup[]>;
         signupOperation = this.signupService.addUser(this.signup)
@@ -43,6 +45,7 @@ export class SignupComponent implements OnInit {
             },
             err => {
                 // Log errors if any
+                this.errorMsg=err;
                 console.log(err);
             });
     }

@@ -21,6 +21,7 @@ var LoginComponent = (function () {
         this.signupService = signupService;
         this.router = router;
         this.regMsg = 'Congrats! Registration Successful';
+        this.errLoginMsg = 'Invalid user name or password';
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.login = {
@@ -43,6 +44,7 @@ var LoginComponent = (function () {
         }, function (err) {
             // Log errors if any
             console.log(err);
+            _this.errorLoginMsg = err;
         });
     };
     return LoginComponent;

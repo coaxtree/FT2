@@ -16,12 +16,14 @@ var AuthGuard = (function () {
     }
     AuthGuard.prototype.canActivate = function (route, state) {
         if (localStorage.getItem('currentUser')) {
+            this.router.navigate(['/homepage']);
             // logged in so return true
             return true;
         }
-        // not logged in so redirect to login page with the return url
-        this.router.navigate(['/login']);
-        return false;
+        else {
+            this.router.navigate(['/login']);
+            return false;
+        }
     };
     return AuthGuard;
 }());

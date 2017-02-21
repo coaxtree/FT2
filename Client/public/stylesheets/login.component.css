@@ -71,3 +71,19 @@ margin-top: 5px;
 margin-right: 150px;
 float: right;
 }
+
+#display-failure
+{
+width: 300px;
+border: 1px solid #D8D8D8;
+padding: 5px;
+border-radius: 5px;
+font-family: Arial;
+font-size: 1em;
+background-color: rgb(255, 249, 242);
+color: rgb(211, 0, 0);
+text-align: center;
+margin-top: 5px;
+margin-right: 150px;
+float: right;
+}

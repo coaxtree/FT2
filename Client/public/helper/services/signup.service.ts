@@ -28,7 +28,7 @@ export class SignupService {
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 localStorage.setItem('registerMsg', "Congrats! Registration Successful");
 
-            }).catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+            }).catch((error: any) => Observable.throw('Email id is already registered..!')); //...errors if any
     }
 
 
@@ -45,7 +45,7 @@ export class SignupService {
                 // store user details 
                 localStorage.setItem('currentUser', JSON.stringify(user));
             })
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+            .catch((error: any) => Observable.throw('Invalid user name or password')); //...errors if any
 
     }
  

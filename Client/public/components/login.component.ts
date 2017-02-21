@@ -26,8 +26,10 @@ export class LoginComponent {
 
   public login: Login;
   public registerMsg:any;
+  public errorLoginMsg:string;
 
   regMsg='Congrats! Registration Successful';
+  errLoginMsg='Invalid user name or password';
   
   ngOnInit() {
   this.login = {
@@ -55,6 +57,7 @@ export class LoginComponent {
       err => {
         // Log errors if any
         console.log(err);
+        this.errorLoginMsg=err;
       });
 
   }

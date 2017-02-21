@@ -12,7 +12,7 @@
     <!--<div class='row'>
         <img class='img-circle logo' src="../../app/assests/images/ft.jpg" alt='Tree Logo'>
       </div>-->
-    <form name="form" (ngSubmit)="submitUser()" #f="ngForm" novalidate>
+    <form name="form" (ngSubmit)="registerUser()" #f="ngForm" novalidate>
       <div class="row">
         <div class="form-group" style="padding-top: 20px">
           <label for="">Your Name</label>
@@ -75,3 +75,6 @@
   </div>
   <div class="col-md-4 col-sm-3 col-xs-1"></div>
 </div>
+  <div class="row" id="display-failure" *ngIf="errorMsg===errMsg">
+    {{errorMsg}}
+  </div>
